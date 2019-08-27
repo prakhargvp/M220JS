@@ -131,7 +131,7 @@ export default class MoviesDAO {
    * in the form of `{cast: { $in: [...castMembers]}}`
    * @param {number} page - The page of movies to retrieve.
    * @param {number} moviesPerPage - The number of movies to display per page.
-   * @returns {FacetedSearchReturn} FacetedSearchReturn
+   * @returns {FacetedSearchReturn} facetedtedSearchReturn
    */
   static async facetedSearch({
     filters = null,
@@ -198,6 +198,9 @@ export default class MoviesDAO {
       sortStage,
       // TODO Ticket: Faceted Search
       // Add the stages to queryPipeline in the correct order.
+      skipStage,
+      limitStage,
+      facetStage
     ]
 
     try {

@@ -12,6 +12,7 @@ module.exports = class MongoEnvironment extends NodeEnvironment {
         {
           useNewUrlParser: true,
           useUnifiedTopology: true,
+          poolSize: 50,
         },
       )
       await super.setup()

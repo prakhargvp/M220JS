@@ -17,7 +17,7 @@ const MongoError = require("mongodb").MongoError
 ;(async () => {
   try {
     // ensure you update your host information below!
-    const host = "mongodb://<your atlas connection uri from your .env file"
+    const host = "mongodb+srv://prakhargvp:94159454@mflix-1633i.mongodb.net/test?retryWrites=true&w=majority"
     const client = await MongoClient.connect(host, { useNewUrlParser: true })
     const mflix = client.db(process.env.MFLIX_NS)
 
@@ -26,7 +26,7 @@ const MongoError = require("mongodb").MongoError
     // check that its type is a string
     // a projection is not required, but may help reduce the amount of data sent
     // over the wire!
-    const predicate = { somefield: { $someOperator: true } }
+    const predicate = { lastupdated: { $type: "string" } }
     const projection = {}
     const cursor = await mflix
       .collection("movies")
@@ -36,7 +36,7 @@ const MongoError = require("mongodb").MongoError
       updateOne: {
         filter: { _id: ObjectId(_id) },
         update: {
-          $set: { lastupdated: new Date(Date.parse(lastupdated)) },
+          $set: { lastupdated: new ISODate(Date.parse(lastupdated)) },
         },
       },
     }))
